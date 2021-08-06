@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fetch = require('node-fetch');
+require('dotenv').config();
 
 const app = express();
 
@@ -29,26 +30,28 @@ app.post('/signup', (req, res) => {
         status: 'subscribed',
         merge_fields: {
           FNAME: firstName,
-          LNAME: lastName
-        }
-      }
-    ]
+          LNAME: lastName,
+        },
+      },
+    ],
   };
 
   const postData = JSON.stringify(data);
 
-  fetch('https://usX.api.mailchimp.com/3.0/lists/<YOUR_AUDIENCE_ID>', {
+  fetch('https://us5.api.mailchimp.com/3.0/lists/' + process.env.LIST_ID, {
     method: 'POST',
     headers: {
-      Authorization: 'auth <YOUR_API_KEY>'
+      Authorization: 'auth ' + process.env.MAILCHIMP_API_KEY,
     },
-    body: postData
+    body: postData,
   })
-    .then(res.statusCode === 200 ?
-      res.redirect('/success.html') :
-      res.redirect('/fail.html'))
-    .catch(err => console.log(err))
-})
+    .then(
+      res.statusCode === 200
+        ? res.redirect('/success.html')
+        : res.redirect('/fail.html')
+    )
+    .catch((err) => console.log(err));
+});
 
 const PORT = process.env.PORT || 5000;
 
