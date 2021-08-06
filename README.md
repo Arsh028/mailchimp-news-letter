@@ -1,6 +1,6 @@
 # MailChimp Newsletter Signup
 
-> Newsletter signup using Node.js/Express and the Mailchimp API. Fill in your [audience ID] and your [API Key] in app.js
+> Newsletter signup using Node.js/Express and the Mailchimp API. Fill in your [audience ID] and your [API Key] in .env
 
 ## Quick Start
 
@@ -13,17 +13,14 @@ npm start
 npm run dev (Nodemon)
 ```
 
+#create .env file and put the below contents
+
+```bash
+# LIST ID
+LIST_ID =  <YOUR_LIST_ID>
+
+# API KEY
+MAILCHIMP_API_KEY = <YOUR_API_KEY>
+```
+
 ## App Info
-
-### Author
-
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
-
-### Version
-
-1.0.0
-
-### License
-
-This project is licensed under the MIT License
